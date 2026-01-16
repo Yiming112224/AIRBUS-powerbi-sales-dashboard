@@ -84,17 +84,46 @@ Operational data originates from three non-integrated repositories (weekly extra
 
 ---
 
-## 6. Data Modeling (Oracle Data Mart)
-Designed as a star schema to support flexible slicing and consistent KPIs: :contentReference[oaicite:15]{index=15}
-- **Dim_Time**: Date, Week, Month, Quarter, Year
-- **Dim_BU**: Business Unit
-- **Dim_Country**: Country
-- Fact tables aligned with operational steps and performance indicators
+## 6. Data Model (Star Schema in Oracle / Semantic Layer)
 
-This structure enables:
-- Time-range selection (week/month/quarter/year)
-- BU and Country filtering
-- KPI aggregation at different granularities without redefining business rules
+The analytics layer is designed as a **star-schema oriented model** with a **conformed Date dimension** and multiple fact tables aligned to the SMART Service process steps (contact → selection → appointment → preparation/stock → delivery) and performance tracking. This structure enables consistent time slicing (Year/Month/Week), cross-filtering by Business Unit and Country, and reliable KPI aggregation.
+
+### 6.1 Conformed Dimensions
+- **DateTable (Dim_Date)**: Central time dimension used across the model  
+  Fields include Date, Year, Quarter, Month Name/Number, Week Number, Day of Week.
+- **BUSINESS_UNIT (Dim_BU)**: List of Airbus business units.
+- **COUNTRY (Dim_Country)**: List of countries.
+- **SMARTPHONE (Dim_Smartphone)**: Phone reference (Brand / Model).
+- **COMPANY (Dim_Company)**: Company mapping (Business Unit ↔ CompanyName).
+- **INSTALLNETWORK (Dim_InstallNetwork)**: Country-level installation network attributes (e.g., Home-to-Work).
+- **EMPLOYEE (Dim_Employee)**: Employee reference attributes (eligibility flag, department, login id, etc.).
+
+> Dimensions are kept reusable (“conformed”) so that KPIs from different process steps remain comparable under the same filters.
+
+### 6.2 Fact Tables (Process & Performance)
+The SMART Service workflow is captured through **multiple fact tables**, each representing a measurable step or dataset:
+- **CONTACT (Fact_Contact)**: user contact events (`CONTACTED_ON`, Brand/Model, LoginID).
+- **SELECTPHONE (Fact_SelectPhone)**: device selection events (`SMARTPHONE_SELECTED_ON`, Brand/Model, LoginID).
+- **APPOINTEMENT (Fact_Appointment)**: appointment scheduling events (`APPOINTMENT_SCHEDULED_ON`, Brand/Model, LoginID).
+- **DELIVERY (Fact_Delivery)**: delivery events (`DELIVERY_DATE`, `DELIVERY_WEEK`, Brand/Model, LoginID).
+- **STOCK_IN / STOCK_OUT (Fact_StockIn / Fact_StockOut)**: inventory movements and preparation/receipt quantities (weekly granularity, Brand/Model).
+- **PERFORMANCE_MD (Fact_Performance)**: KPI-performance dataset at Date × BU × Country grain (e.g., Actual and Personal Phone measures).
+- **Auto forecast / Manually forecast (Fact_Forecast)**: forecast measures by date/week/year to support rollout monitoring and deviation alerts.
+- **BUDATECOUNTRY (Bridge/Fact_BUDateCountry)**: helper table at BU × Country × Date grain used to standardize filtering and reporting consistency where needed.
+
+### 6.3 Relationships & Reporting Behavior
+- **DateTable** acts as the primary filter for all time-based facts (monthly/weekly slicing).
+- **COUNTRY** and **BUSINESS_UNIT** provide consistent organizational slicing across performance and operational facts.
+- **SMARTPHONE (Brand/Model)** enables the “Most Popular Model” KPI and device-level analysis.
+- Employee/Company/InstallNetwork tables enrich slicing and support governance-friendly segmentation without duplicating attributes in fact tables.
+
+### 6.4 Why this Model Works for the Dashboard
+This schema supports:
+- End-to-end KPI tracking along the SMART process (contacted → selected → appointment → prepared/stock → delivered)
+- Inventory/backlog analytics through stock in/out + delivery flows
+- Rollout monitoring through actual vs forecast tables
+- Consistent filtering by time range (Year/Month/Week), Business Unit, and Country
+- Scalable extension (new process steps or KPIs can be added by introducing a new fact table without breaking existing measures)
 
 ---
 
