@@ -107,7 +107,7 @@ This structure enables:
 ---
 
 ## 8. Files in This Repository
-- `images/kpi-overview.png` — dashboard screenshot preview  
+- `kpi-overview.png` — dashboard screenshot preview  
 - `exports/smartphone-logistics-dashboard.pdf` — PDF export for quick viewing (recommended)  
 - `report/smartphone-logistics-dashboard.pbix` — Power BI source file (optional)  
 - `docs/Concept dossier...docx` — functional & technical design document (project specification) :contentReference[oaicite:16]{index=16}
