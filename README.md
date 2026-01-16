@@ -39,8 +39,6 @@ A centralized analytical store built to serve all KPI needs with consistent defi
 ### C) Automated ETL in Talend
 A production-style pipeline to ingest, standardize, validate, and load weekly extracts from multiple repositories.
 
-> **Important:** All components above (Talend jobs + Oracle data mart + Power BI model & dashboard) were designed and implemented by me end-to-end.
-
 ---
 
 ## 3. Data Sources
