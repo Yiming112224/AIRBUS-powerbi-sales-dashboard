@@ -4,7 +4,7 @@ Smartphone Logistics Performance Dashboard (Power BI)
 A single-page executive dashboard built in **Power BI** to monitor **smartphone logistics performance** across time (year/month/week), business unit, and country. It consolidates key KPIs, rollout/forecast trends, inventory & backlog signals, and order distribution into one view for quick weekly/monthly follow-up.
 
 ## Preview
-![Dashboard Preview]("C:\Users\37045\Pictures\kpi-overview.png")
+![Dashboard Preview]("C:/Users/37045/Pictures/kpi-overview.png")
 
 ## Key Features
 - **Interactive time controls**: Year / Month / Week slicers (range sliders) for flexible period selection (e.g., Jan–Mar vs. full year).
