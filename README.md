@@ -1,7 +1,7 @@
 # Smartphone Logistics Performance Dashboard (End-to-End BI Project)
 
 Single-page executive dashboard for SMART Service (Airbus context) to monitor smartphone logistics performance and rollout progress through weekly-refreshed KPIs.  
-This project covers the full BI lifecycle end-to-end: **requirements → data modeling → Talend ETL → Oracle data mart → Power BI dashboard**. :contentReference[oaicite:1]{index=1}
+This project covers the full BI lifecycle end-to-end: **requirements → data modeling → Talend ETL → Oracle data mart → Power BI dashboard**.  
 
 ![Dashboard Preview](kpi-overview.png)
 
@@ -9,15 +9,15 @@ This project covers the full BI lifecycle end-to-end: **requirements → data mo
 
 ## 1. Project Background
 SMART Service supports Airbus employees with smartphone provisioning and operations (eligibility → selection → reception/configuration → appointment → delivery).  
-The business requested an automated KPI dashboard to monitor team activity and performance, with governance and security constraints. :contentReference[oaicite:2]{index=2}
+The business requested an automated KPI dashboard to monitor team activity and performance, with governance and security constraints.  
 
 **Key requirements**
-- **One-pager**: all KPIs on a single page (executive view). :contentReference[oaicite:3]{index=3}  
-- **Weekly refresh** and historical tracking. :contentReference[oaicite:4]{index=4}  
-- **Security / roles** separation (admin vs users) + SSO recommended. :contentReference[oaicite:5]{index=5}  
-- **Data quality log** during integration (error visibility). :contentReference[oaicite:6]{index=6}  
-- **Retention**: keep data for 2 years. :contentReference[oaicite:7]{index=7}  
-- Filters: time range, country, and business unit. :contentReference[oaicite:8]{index=8}  
+- **One-pager**: all KPIs on a single page (executive view).    
+- **Weekly refresh** and historical tracking.    
+- **Security / roles** separation (admin vs users) + SSO recommended.    
+- **Data quality log** during integration (error visibility).    
+- **Retention**: keep data for 2 years.    
+- Filters: time range, country, and business unit.    
 
 ---
 
@@ -34,7 +34,7 @@ A single-page dashboard designed as an executive cockpit:
 ### B) Data Mart in Oracle (Mag_SMART)
 A centralized analytical store built to serve all KPI needs with consistent definitions:
 - Dimensions: **Time**, **Business Unit**, **Country**
-- Facts/measures aligned with KPI measurement dictionary (counts/sums for operational steps, stock movements, backlog, etc.) :contentReference[oaicite:9]{index=9}
+- Facts/measures aligned with KPI measurement dictionary (counts/sums for operational steps, stock movements, backlog, etc.)  
 
 ### C) Automated ETL in Talend
 A production-style pipeline to ingest, standardize, validate, and load weekly extracts from multiple repositories.
@@ -42,7 +42,7 @@ A production-style pipeline to ingest, standardize, validate, and load weekly ex
 ---
 
 ## 3. Data Sources
-Operational data originates from three non-integrated repositories (weekly extracts): :contentReference[oaicite:10]{index=10}
+Operational data originates from three non-integrated repositories (weekly extracts):  
 - **BES**
 - **SMART Portal**
 - **Fleet** (shared directory exports)
@@ -54,7 +54,7 @@ Operational data originates from three non-integrated repositories (weekly extra
 1. Source files (BES / Portal / Fleet)  
 2. **Talend ETL pipeline** (staging → standardization → cleansing → validation)  
 3. **Oracle DW / Data Mart (Mag_SMART)**  
-4. **Power BI** semantic model + measures + dashboard :contentReference[oaicite:11]{index=11}
+4. **Power BI** semantic model + measures + dashboard  
 
 ---
 
@@ -66,7 +66,7 @@ Operational data originates from three non-integrated repositories (weekly extra
 ### 5.2 Data Quality, Validation, and Reuse
 - Handle common issues: nulls, inconsistent values, manual spelling errors
 - Implement reusable **Java routines** inside Talend and call them in **tMap** for consistent rule enforcement
-- Apply business rules required by reporting (e.g., week number derivation when missing) :contentReference[oaicite:12]{index=12}
+- Apply business rules required by reporting (e.g., week number derivation when missing)  
 
 ### 5.3 Traceability & Lineage
 - Track metadata: source system, file name, load timestamp, row counts
@@ -75,10 +75,10 @@ Operational data originates from three non-integrated repositories (weekly extra
 ### 5.4 Error Logging & Exception Handling
 - Row-level rejects (quarantine) with reason codes
 - Job-level exception handling for schema mismatch/corrupted files/connection failures
-- Integration requirement: **data quality log available during file integration** :contentReference[oaicite:13]{index=13}
+- Integration requirement: **data quality log available during file integration**  
 
 ### 5.5 Scheduling
-- Weekly load cadence to meet refresh requirements (e.g., Monday morning schedule) :contentReference[oaicite:14]{index=14}
+- Weekly load cadence to meet refresh requirements (e.g., Monday morning schedule)  
 
 ---
 
@@ -137,7 +137,7 @@ This schema supports:
 - `kpi-overview.png` — dashboard screenshot preview  
 - `smartphone-logistics-dashboard.pdf` — PDF export for quick viewing (recommended)  
 - `smartphone-logistics-dashboard.pbix` — Power BI source file (optional)  
-- `Dossier_conception_Yiming-GUI.docx` — functional & technical design document (project specification) :contentReference[oaicite:16]{index=16}
+- `Dossier_conception_Yiming-GUI.docx` — functional & technical design document (project specification)  
 
 ---
 
