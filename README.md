@@ -3,7 +3,7 @@
 Single-page executive dashboard for SMART Service (Airbus context) to monitor smartphone logistics performance and rollout progress through weekly-refreshed KPIs.  
 This project covers the full BI lifecycle end-to-end: **requirements → data modeling → Talend ETL → Oracle data mart → Power BI dashboard**. :contentReference[oaicite:1]{index=1}
 
-![Dashboard Preview](images/kpi-overview.png)
+![Dashboard Preview](kpi-overview.png)
 
 ---
 
