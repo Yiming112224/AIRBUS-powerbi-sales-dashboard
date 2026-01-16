@@ -44,4 +44,3 @@ Open: `exports/smartphone-logistics-dashboard.pdf`
 Designed as a **single-page executive dashboard** to support fast, repeatable weekly/monthly monitoring and issue spotting (inventory/backlog build-up, forecast deviation, geographic concentration).
 
 ---
-If you’d like, I can tailor this README for a specific role (Data Analyst / BI Analyst / Supply Chain Analyst) and add a concise “Impact” section with outcome-style bullet points.
